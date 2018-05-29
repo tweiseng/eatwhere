@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Eatwhere</title>
-    <%= csrf_meta_tags %>
+   <!--  csrf_meta_tags  "if want to use this wrap in angry squids-->
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,6 +10,11 @@
   </head>
 
   <body>
+   <div id="flash">
+    <% flash.each do |key, value| %>
+      <div id="flash_<%= key %>"><%= value %></div>
+    <% end %>
+  </div>
     <%= yield %>
   </body>
 </html>
