@@ -3,7 +3,13 @@ class UsersController < ApplicationController
 		@user = User.new
 	end
 
-	def create		
+#find out why the action below and the session action does not route correctly for sign in
+	# def sign
+		
+	# end
+
+	def create
+	byebug		
 		@user = User.new
 		@user.name = params[:user][:name]
 		@user.email = params[:user][:email]
@@ -18,20 +24,21 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def sign
-		byebug
-	end
+	def destroy
+	new
 
-	def session
-		@user = User.find_by(email: params[:user][:email])
-		if @user.password == params[:user][:password]
-			cookies[:uid] = @user.id
-			cookies[:email] = @user.email
-		else
-			flash[:notice] ='Email or password is invalid'
-			redirect_to signin_path
-		end
-	end
+
+
+	# def session
+	# 	@user = User.find_by_email(params[:user][:email])
+	# 	if @user.password == params[:user][:password]
+	# 		cookies[:uid] = @user.id
+	# 		cookies[:email] = @user.email
+	# 	else
+	# 		flash[:notice] ='Email or password is invalid'
+	# 		redirect_to signin_path
+	# 	end
+	# end
 
 private
 	# def permit_params

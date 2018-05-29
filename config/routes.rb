@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users, except: [:new]
   root 'home#index'
   
-  get '/signin' =>'users#sign'
-  post '/signin' =>'users#session'
+  post "/signin" =>"sessions#create"
+  get "/signin" =>"sessions#new"
+  get "/signout" => "sessions#destroy"
+  get "/signup" => "users#new"
+  get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
