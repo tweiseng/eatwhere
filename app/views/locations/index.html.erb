@@ -1,0 +1,8 @@
+<% for i in @locations do %>
+<%= i.name%>
+<%= link_to "remove", locdel_path(i.id), method: :delete%><br>
+<%end%>
+
+
+<%= link_to "Add another location", locations_new_path%><br>
+<%= link_to "home", root_path%>

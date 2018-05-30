@@ -3,8 +3,67 @@
 <%if @user!=nil%>
 <%= @user.name%><br>
 <%= link_to "sign out", signout_path%><br>
-<%else%>
 
+<%= form_tag restaurants_path, id: "resto-search", method: :get do %>
+<p>
+	<%= text_field_tag "query", nil, list: "list", placeholder: "Search" %><br>
+	<%= number_field_tag :distance, params[:distance], placeholder: "distance, in meters" %>
+	<datalist id="list">
+		
+	</datalist>
+	<%= submit_tag "Search", :name => nil %>
+</p>
+
+<%= link_to "Save a town/city for easy search", locations_new_path%>
+
+<%end%>
+<%else%>
+<%= link_to "sign up", signup_path %><br>
 <%= link_to "sign in", signin_path %><br>
 <%= link_to "Sign in with Google", "/auth/google_oauth2" %>
 <%end%>
+
+<script>
+
+$("#resto-search").on("keyup", function(){
+  autocomplete()
+});
+
+function autocomplete(){
+	// let search = $("#listings-search").serialize()
+	// console.log("serialize")
+	// console.log(search);
+	// console.log("I am inside of autocomplete")
+	// let query = $("#city-search").serialize();
+	// console.log("==============")
+	// console.log(query);
+  $.ajax({
+    url: '/search',
+    type: 'POST',
+    data: $("#resto-search").serialize(), //takes the form data and authenticity token and converts it into a standard URL
+    dataType: 'json', //specify what type of data you're expecting back from the servers
+    error: function(request, status, error) {
+    	alert(request.responseText);
+        console.log("Something went wrong");
+    },
+    success: function(data) {
+    	console.log(" I am back in javascript ajax");
+      	console.log(data)
+      	let list = $("#list")
+      	console.log(list);	
+      $("#list").html("");
+
+      data.forEach(function(element) {
+        var option = document.createElement("option");
+        option.value = element.name;
+
+        // append option to list
+        $("#list").append(option);
+      });
+    }
+  });
+}
+
+
+
+</script>
