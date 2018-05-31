@@ -32,9 +32,6 @@ class LocationsController < ApplicationController
 		@location.destroy
 		flash[:notice] ='Town/City removed'
 		redirect_to locations_path
-		# respond_to do|format|
-		#   format.html { redirect_to locations_path, notice: "Location removed." }
-		#   format.json {render :locations, notice: "Location removed"}
 	end
 
 	def search
