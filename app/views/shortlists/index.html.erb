@@ -14,19 +14,15 @@
 	<hr>
 <%end%>
 
+<%= link_to "All Shortlists", shortlists_path%><br>
+<%= link_to "home", root_path%>
+
 <script>
 $("#list-search").on("keyup", function(){
   autocomplete()
 });
-
 function autocomplete(){
-	// let search = $("#listings-search").serialize()
-	// console.log("serialize")
-	// console.log(search);
-	console.log("I am inside of autocomplete")
-	// let query = $("#city-search").serialize();
-	// console.log("==============")
-	// console.log(query);
+	console.log("I am inside of autocomplete");
   $.ajax({
     url: '/findlist',
     type: 'POST',
@@ -37,18 +33,11 @@ function autocomplete(){
         console.log("Something went wrong");
     },
     success: function(data) {
-    	console.log(" I am back in javascript ajax");
-      	console.log(data)
-      	let list = $("#haha")
-      	console.log(list);	
+      	let list = $("#haha");      		
       $("#haha").html("");
-
       data.forEach(function(element) {
         var option = document.createElement("option");
         option.value = element.name;
-        console.log(element.name)
-        console.log(option)
-
         // append option to list
         $("#haha").append(option);
       });

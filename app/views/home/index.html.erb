@@ -29,13 +29,6 @@ $("#resto-search").on("keyup", function(){
 });
 
 function autocomplete(){
-	// let search = $("#listings-search").serialize()
-	// console.log("serialize")
-	// console.log(search);
-	// console.log("I am inside of autocomplete")
-	// let query = $("#city-search").serialize();
-	// console.log("==============")
-	// console.log(query);
   $.ajax({
     url: '/search',
     type: 'POST',
@@ -46,23 +39,15 @@ function autocomplete(){
         console.log("Something went wrong");
     },
     success: function(data) {
-    	console.log(" I am back in javascript ajax");
-      	console.log(data)
-      	let list = $("#list")
-      	console.log(list);	
+      	let list = $("#list");	
       $("#list").html("");
-
       data.forEach(function(element) {
         var option = document.createElement("option");
         option.value = element.name;
-
         // append option to list
         $("#list").append(option);
       });
     }
   });
 }
-
-
-
 </script>
