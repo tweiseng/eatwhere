@@ -1,8 +1,7 @@
 class ShortlistsController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
-	def index
-		# byebug
+	def index		
 		if params[:query]&&params[:query]!=""
 			@list = ShortList.where(user_id: cookies[:uid])
 			@list = @list.where(restaurant_id: Restaurant.where(name: params[:query])[0].id)
@@ -13,13 +12,11 @@ class ShortlistsController < ApplicationController
 		end			
 	end
 
-	def new
-		# byebug
+	def new		
 		@restaurant = Restaurant.find(params[:format])
 	end
 
-	def create
-		# byebug
+	def create		
 		@list = ShortList.new
 		@list.user_id = cookies[:uid]
 		@list.restaurant_id = params[:format] 
@@ -35,8 +32,6 @@ class ShortlistsController < ApplicationController
 	end
 
 	def search
-		# byebug
-		# @list = ShortList.where('name LIKE?', "%#{params[:query]}%")
 		@list = ShortList.where(user_id: cookies[:uid])
 		@restaurant =[]
 		for i in @list do

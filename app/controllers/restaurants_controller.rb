@@ -8,24 +8,6 @@ class RestaurantsController < ApplicationController
 		end
 	end
 
-
-	# def create
-	# 	@client = GooglePlaces::Client.new("AIzaSyCr8OKbO02oCu-cz5MvP2JFCoK_rDhgAeY") 
-	# 	@restaurant = Restaurant.new
-	# 	@restaurant.name = @client.spot(params[:format]).name
-	# 	if @client.spot(params[:format]).formatted_address!=nil
-	# 		@restaurant.location = @client.spot(params[:format]).formatted_address
-	# 	end
-	# 	@restaurant.place_id = params[:format]
-	# 	@restaurant.save
-
-	# 	if @restaurant.save
-	# 		redirect_to restaurant_shortlists_path, method: :post
-	# 	else
-	# 		render :index
-	# 	end
-	# end
-
 	def create
 		byebug
 		@client = GooglePlaces::Client.new(ENV['API_KEY']) 
