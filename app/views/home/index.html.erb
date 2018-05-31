@@ -4,18 +4,18 @@
 <%= @user.name%><br>
 <%= link_to "sign out", signout_path%><br>
 
+<p>OUR SERVICE PROVIDES A LIST OF RESTAURANTS WITHIN THE AREAS YOU SEARCH AND RADIUS(optional) YOU SPECIFY</p>
 <%= form_tag restaurants_path, id: "resto-search", method: :get do %>
 <p>
-	<%= text_field_tag "query", nil, list: "list", placeholder: "Search" %><br>
-	<%= number_field_tag :distance, params[:distance], placeholder: "distance, in meters" %>
-	<datalist id="list">
-		
-	</datalist>
-	<%= submit_tag "Search", :name => nil %>
+  <%= text_field_tag "query", nil, list: "list", placeholder: "Search" %><br>
+  <%= number_field_tag :distance, params[:distance], placeholder: "distance, in meters" %>
+  <datalist id="list">
+    
+  </datalist>
+  <%= submit_tag "Search", :name => nil %>
 </p>
-
-<%= link_to "Save a town/city for easy search", locations_new_path%><br>
-<%= link_to "Search thru your shortlist", shortlists_path%>
+<%= link_to "Save a town/city for easy future search", locations_new_path%><br>
+<%= link_to "Search thru your shortlisted restaurants", shortlists_path%>
 <%end%>
 <%else%>
 <%= link_to "sign up", signup_path %><br>
