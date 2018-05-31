@@ -73,3 +73,7 @@ gem 'geocoder'
 
 gem 'jquery-rails'
 
+gem 'rspec-rails'
+
+
+
