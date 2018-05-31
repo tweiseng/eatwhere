@@ -5,9 +5,9 @@ RSpec.describe Restaurant, type: :model do
 let(:name) {"Sunny Restaurant"}
 let(:location){"Some random address"}
 let(:restaurant){Restaurant.new(name: name, location: location)}
-# let(:resto){Restaurant.new(name:asdasf, location: "asfsdf")}
 
-	describe "#initialize" do
+
+	describe "correct input types" do
 	  context "with valid input" do
 	  	it "creates a new Restaurant object" do
 	  		expect(restaurant.name).to eq(name)
@@ -32,6 +32,9 @@ let(:restaurant){Restaurant.new(name: name, location: location)}
 
 	  	context "lack of input for either of attributes" do
 	  		it "will not be able to create the object" do
-	  			expect
+	  			@resto= Restaurant.new
+	  			expect{@resto.save}.to raise_error(ActiveRecord::NotNullViolation)
+	  		end
+	  	end
 	  end
 end
