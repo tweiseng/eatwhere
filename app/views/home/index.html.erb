@@ -7,7 +7,7 @@
 <p>OUR SERVICE PROVIDES A LIST OF RESTAURANTS WITHIN THE AREAS YOU SEARCH AND RADIUS(optional) YOU SPECIFY</p>
 <%= form_tag restaurants_path, id: "resto-search", method: :get do %>
 <p>
-  <%= text_field_tag "query", nil, list: "list", placeholder: "Search" %><br>
+  <%= text_field_tag "query", nil, list: "list", placeholder: "Search area" %><br>
   <%= number_field_tag :distance, params[:distance], placeholder: "distance, in meters" %>
   <datalist id="list">
     
