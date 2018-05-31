@@ -1,0 +1,20 @@
+<%= params[:query] %><br>
+<%count = 0%>
+<% for i in @places do %>
+	<%= count+1 %>)
+	<%= i.name %><br>
+		<%if i.formatted_address!=nil%>
+			<%= i.formatted_address%><br>
+		<%end%>
+		<%if i.opening_hours!=nil%>
+			<%if i.opening_hours["open_now"]==true%>
+				<p>OPEN!!!!!</p>
+			<%else%>
+				<p>WE ARE CLOSED! Take your business elsewhere!</p>
+			<%end%>
+		<%end%>
+	<%count +=1%>
+	<%=link_to "Add to list", saverest_path(i.place_id), method: :post%>
+	<hr>
+<%end%>
+<%= link_to "home", root_path%>

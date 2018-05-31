@@ -1,0 +1,47 @@
+<%= form_tag shortlists_path, id: "list-search", method: :get do %>
+<p>
+  <%= text_field_tag "query", nil, list: "haha",  placeholder: "Search" %><br>
+  <datalist id="haha">
+    
+  </datalist>
+  <%= submit_tag "Search", :name => nil %>
+<%end%>
+
+<%for i in @list do%>
+	<%@restaurant = Restaurant.find(i.restaurant_id)%>
+	<%= @restaurant.name%> <%=link_to "Delete", shortlist_path(i.id), method: :delete%><br>
+	<%= @restaurant.location%><br>
+	<hr>
+<%end%>
+
+<%= link_to "All Shortlists", shortlists_path%><br>
+<%= link_to "home", root_path%>
+
+<script>
+$("#list-search").on("keyup", function(){
+  autocomplete()
+});
+function autocomplete(){
+	console.log("I am inside of autocomplete");
+  $.ajax({
+    url: '/findlist',
+    type: 'POST',
+    data: $("#list-search").serialize(), //takes the form data and authenticity token and converts it into a standard URL
+    dataType: 'json', //specify what type of data you're expecting back from the servers
+    error: function(request, status, error) {
+    	alert(request.responseText);
+        console.log("Something went wrong");
+    },
+    success: function(data) {
+      	let list = $("#haha");      		
+      $("#haha").html("");
+      data.forEach(function(element) {
+        var option = document.createElement("option");
+        option.value = element.name;
+        // append option to list
+        $("#haha").append(option);
+      });
+    }
+  });
+}
+</script>
