@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :users, except: [:new]
-  resources :restaurants, except: [:create] do
-  	resources :shortlists
-  end
+  resources :restaurants, except: [:create] 
+	resources :shortlists
+  
 
 
 
@@ -19,5 +19,6 @@ Rails.application.routes.draw do
   get "/locations" =>"locations#index"
   get "/locations/new"=>"locations#new"
   post "/locations"=>"locations#create"
+  post "/findlist"=>"shortlists#search"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

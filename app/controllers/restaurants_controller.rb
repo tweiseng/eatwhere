@@ -39,7 +39,7 @@ class RestaurantsController < ApplicationController
 			@restaurant.save
 		end
 		if @restaurant
-			redirect_to new_restaurant_shortlist_path(@restaurant.id)
+			redirect_to new_shortlist_path(@restaurant.id)
 		else
 			render :index
 		end

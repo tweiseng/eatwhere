@@ -14,8 +14,8 @@
 	<%= submit_tag "Search", :name => nil %>
 </p>
 
-<%= link_to "Save a town/city for easy search", locations_new_path%>
-
+<%= link_to "Save a town/city for easy search", locations_new_path%><br>
+<%= link_to "Search thru your shortlist", shortlists_path%>
 <%end%>
 <%else%>
 <%= link_to "sign up", signup_path %><br>
@@ -24,7 +24,6 @@
 <%end%>
 
 <script>
-
 $("#resto-search").on("keyup", function(){
   autocomplete()
 });
