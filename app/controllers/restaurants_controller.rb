@@ -1,6 +1,6 @@
 class RestaurantsController < ApplicationController
 	def index
-		# byebug
+		
 		if params[:query]
 			@client = GooglePlaces::Client.new(ENV['API_KEY'])
 			@places = @client.spots_by_query(params[:query], :types =>['restaurant', 'food','point_of_interest', 'establishment'], :radius =>params[:distance])
@@ -9,7 +9,6 @@ class RestaurantsController < ApplicationController
 	end
 
 	def create
-		byebug
 		@client = GooglePlaces::Client.new(ENV['API_KEY']) 
 		@restaurant = Restaurant.find_by_place_id(params[:format])
 		# GObject = @client.spot(params[:format])
