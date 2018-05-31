@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
 	end
 
 	def create		
-		# byebug
 		@user = User.find_by_email(params[:session][:email])
 		if @user == nil
 		elsif @user.authenticate(params[:session][:password])!= false
